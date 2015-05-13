@@ -1,0 +1,6 @@
+Thumbs.db
+app/
+cache/
+bin/
+*.sprite2
+*.sb2
