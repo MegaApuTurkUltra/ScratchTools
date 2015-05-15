@@ -1,7 +1,7 @@
 /**
  * 
  */
-package apu.scratch.followerlistgen;
+package apu.scratch.tools.gen.followers;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -246,7 +246,7 @@ public class FollowerListGen {
 
 	private static BufferedImage createDummyAvatar() {
 		// try-with-resources autocloses the inputstream, saving me some lines of code :P
-		try (InputStream in = FollowerListGen.class.getResourceAsStream("/dummy.png")) {
+		try (InputStream in = FollowerListGen.class.getResourceAsStream("/res/dummy.png")) {
 			return ImageIO.read(in);
 		} catch (Exception e) {
 			return null;
