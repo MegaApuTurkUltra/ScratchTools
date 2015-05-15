@@ -9,3 +9,7 @@ Usage:
 ```bash
 java -jar "dist/FollowerListGen.jar" <username> <output file name>
 ```
+
+## Visualizer Generator ##
+Generates a project with a visualization of a given audio file. Additional instructions for setting up the project are in the generated Scratch project file.  
+Usage: Install onto a local webserver or try it at http://aputurk.tk/ScratchTools/visualization/
