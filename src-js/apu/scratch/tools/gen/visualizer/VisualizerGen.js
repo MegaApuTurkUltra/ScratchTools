@@ -61,7 +61,7 @@ function sampleAudioStream() {
 		pts[frame * 80 + i] = data;
 	}
 	iterations++;
-	requestAnimationFrame(sampleAudioStream);
+	setTimeout(sampleAudioStream, 10);
 };
 
 function startGen() {
@@ -72,7 +72,7 @@ function startGen() {
 	inputFile.style.display = "none";
 	iterations = 0;
 	startTime = new Date().getTime();
-	requestAnimationFrame(sampleAudioStream);
+	sampleAudioStream();
 }
 
 var _debug;
