@@ -14,5 +14,11 @@
 	<classpathentry kind="lib" path="lib/org.json.jar"/>
 	<classpathentry kind="lib" path="lib/at.dyhan.open_imaging.jar"/>
 	<classpathentry kind="lib" path="lib/JTransforms-3.0.jar"/>
+	<classpathentry kind="lib" path="lib-minim/jl1.0.jar"/>
+	<classpathentry kind="lib" path="lib-minim/jsminim.jar" sourcepath="lib-minim/src-minim.zip"/>
+	<classpathentry kind="lib" path="lib-minim/minim.jar" sourcepath="lib-minim/src-minim.zip"/>
+	<classpathentry kind="lib" path="lib-minim/mp3spi1.9.4.jar"/>
+	<classpathentry kind="lib" path="lib-minim/tritonus_aos.jar"/>
+	<classpathentry kind="lib" path="lib-minim/tritonus_share.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
