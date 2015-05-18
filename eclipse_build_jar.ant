@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Package Project">
+	<target name="create_run_jar">
+		<!-- Clean build directory -->
+		<delete dir="build" />
+		<mkdir dir="build" />
+
+		<!-- Define classpath -->
+		<path id="master-classpath">
+			<fileset dir="lib">
+				<include name="*.jar" />
+			</fileset>
+			<fileset dir="lib-minim">
+				<include name="*.jar" />
+			</fileset>
+			<fileset dir="lib-jtransforms">
+				<include name="*.jar" />
+			</fileset>
+		</path>
+
+		<!-- Compile -->
+		<javac srcdir="src" destdir="build" includeantruntime="false" debug="on">
+			<classpath refid="master-classpath" />
+		</javac>
+
+		<!-- Copy resources -->
+		<copy todir="build">
+			<fileset dir="src" includes="**/*" excludes="**/*.java" />
+		</copy>
+
+		<!-- Package jar -->
+		<jar destfile="dist/ScratchTools.jar">
+			<manifest>
+				<attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader" />
+				<attribute name="Rsrc-Main-Class" value="apu.scratch.tools.ToolsMain" />
+				<attribute name="Class-Path" value="." />
+				<attribute name="Rsrc-Class-Path" value="./ commons-codec-1.6.jar commons-logging-1.1.3.jar fluent-hc-4.3.3.jar httpclient-4.3.3.jar httpclient-cache-4.3.3.jar httpcore-4.3.2.jar httpmime-4.3.3.jar jsoup-1.8.1.jar org.json.jar at.dyhan.open_imaging.jar JTransforms-3.0.jar jl1.0.jar jsminim.jar minim.jar mp3spi1.9.4.jar tritonus_aos.jar tritonus_share.jar JLargeArrays-1.3.jar" />
+			</manifest>
+			<zipfileset src="jar-in-jar-loader.zip" />
+			<fileset dir="build" />
+			<zipfileset dir="lib" includes="commons-codec-1.6.jar" />
+			<zipfileset dir="lib" includes="commons-logging-1.1.3.jar" />
+			<zipfileset dir="lib" includes="fluent-hc-4.3.3.jar" />
+			<zipfileset dir="lib" includes="httpclient-4.3.3.jar" />
+			<zipfileset dir="lib" includes="httpclient-cache-4.3.3.jar" />
+			<zipfileset dir="lib" includes="httpcore-4.3.2.jar" />
+			<zipfileset dir="lib" includes="httpmime-4.3.3.jar" />
+			<zipfileset dir="lib" includes="jsoup-1.8.1.jar" />
+			<zipfileset dir="lib" includes="org.json.jar" />
+			<zipfileset dir="lib" includes="at.dyhan.open_imaging.jar" />
+			<zipfileset dir="lib" includes="JTransforms-3.0.jar" />
+			<zipfileset dir="lib-minim" includes="jl1.0.jar" />
+			<zipfileset dir="lib-minim" includes="jsminim.jar" />
+			<zipfileset dir="lib-minim" includes="minim.jar" />
+			<zipfileset dir="lib-minim" includes="mp3spi1.9.4.jar" />
+			<zipfileset dir="lib-minim" includes="tritonus_aos.jar" />
+			<zipfileset dir="lib-minim" includes="tritonus_share.jar" />
+			<zipfileset dir="lib-jtransforms" includes="JLargeArrays-1.3.jar" />
+		</jar>
+	</target>
+</project>

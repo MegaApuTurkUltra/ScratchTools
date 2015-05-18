@@ -15,6 +15,10 @@ java -jar dist/ScratchTools.jar FollowerListGenerator <username> <output sprite2
 ### Visualizer Generator ###
 Generates a project with a visualization of a given audio file. Additional instructions for setting up the project are in the generated Scratch project file.  
 ```bash
-java -jar dist/ScratchTools.jar VisualizerGenerator <input audio file> <output sb2 file>
+java -jar dist/ScratchTools.jar VisualizerGenerator <input audio file> <output sb2 file> <fullSpectrum>
 ```
+fullSpectrum: Can be true or false, if true, the tool will output a large range of frequencies, if false, the tool will only output low frequencies.  
 Note: Allows MP3 files as input, but has trouble reading some of them. WAV files are recommended.
+
+The generated projects contains more instructions for setup. Visualizer color, alpha, scale, and low and high data thresholds can be set there.  
+Note: You must set the sound length setting in the project if nothing else. Follow the instructions for best results.

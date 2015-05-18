@@ -42,6 +42,8 @@ public class VisualizerGenMinim extends ToolBase {
 		System.out.println("Initializing...");
 		File input = new File(args[0]);
 		File output = new File(args[1]);
+		boolean bass_only = !args[2].equals("true");
+
 		ZipOutputStream outFile = new ZipOutputStream(new FileOutputStream(
 				output));
 		ZipInputStream projectFileIn = new ZipInputStream(
@@ -78,16 +80,35 @@ public class VisualizerGenMinim extends ToolBase {
 			}
 			fft.forward(audioBuffer);
 
-			for (int k = 0; k < 80; k++) {
-				float data = fft.getBand(k) / 5;
-				if (data < 75)
-					data = 75;
-				if (data > 150)
-					data = 150;
+			if (bass_only) {
+				for (int k = 0; k < 80; k++) {
+					float data = fft.getBand(k) / 5;
+//					if (data < 75 && !no_thresh)
+//						data = 75;
+//					if (data > 150 && !no_thresh)
+//						data = 150;
 
-				int val = Math.round(data);
-				valuesArray.put(val);
-				counter++;
+					int val = Math.round(data);
+					valuesArray.put(val);
+					counter++;
+				}
+			} else {
+				for (int k = 0; k < 800; k += 10) {
+					float data = 0;
+					for (int l = 0; l < 10; l++) {
+						data += fft.getBand(k + l);
+					}
+					data = data / 50;
+
+//					if (data < 75 && !no_thresh)
+//						data = 75;
+//					if (data > 150 && !no_thresh)
+//						data = 150;
+
+					int val = Math.round(data);
+					valuesArray.put(val);
+					counter++;
+				}
 			}
 
 			int perc = 100 * i / buffer.getBufferSize();
@@ -137,8 +158,15 @@ public class VisualizerGenMinim extends ToolBase {
 
 	@Override
 	public ParamDef[] getParams() {
-		return new ParamDef[]{new ParamDef("input", "The input audio file (mp3 or wav)", false, ParamType.FILENAME),
-				new ParamDef("output", "The sb2 file to write to", false, ParamType.FILE_OUT)};
+		return new ParamDef[] {
+				new ParamDef("input", "The input audio file (mp3 or wav)",
+						false, ParamType.FILENAME),
+				new ParamDef("output", "The sb2 file to write to", false,
+						ParamType.FILE_OUT),
+				new ParamDef(
+						"fullSpectrum",
+						"True to analyze a large spectrum of frequencies, false or omit for bass only",
+						false, ParamType.BOOLEAN) };
 	}
 
 	@Override

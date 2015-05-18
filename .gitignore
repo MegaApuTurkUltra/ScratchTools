@@ -4,3 +4,4 @@ cache/
 bin/
 *.sprite2
 *.sb2
+build/
