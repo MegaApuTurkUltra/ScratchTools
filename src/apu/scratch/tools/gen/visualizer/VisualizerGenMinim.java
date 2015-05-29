@@ -57,8 +57,21 @@ public class VisualizerGenMinim extends ToolBase {
 
 		MultiChannelBuffer buffer = new MultiChannelBuffer(0, 0);
 
-		float sampleRate = minim.loadFileIntoBuffer(input.getAbsolutePath(),
-				buffer);
+		float sampleRate = 0;
+		try {
+			sampleRate = minim.loadFileIntoBuffer(
+					input.getAbsolutePath(), buffer);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err
+					.println("Whoops, there was an error reading your sound file."
+							+ " If you haven't already, try using a WAV file, "
+							+ "those tend to work better");
+			outFile.close();
+			output.delete();
+			projectFileIn.close();
+			return;
+		}
 
 		FFT fft = new FFT(256 * 64, sampleRate);
 		fft.linAverages(30);
@@ -84,10 +97,10 @@ public class VisualizerGenMinim extends ToolBase {
 			if (bass_only) {
 				for (int k = 0; k < 80; k++) {
 					float data = fft.getBand(k) / 5;
-//					if (data < 75 && !no_thresh)
-//						data = 75;
-//					if (data > 150 && !no_thresh)
-//						data = 150;
+					// if (data < 75 && !no_thresh)
+					// data = 75;
+					// if (data > 150 && !no_thresh)
+					// data = 150;
 
 					int val = Math.round(data);
 					valuesArray.put(val);
@@ -101,10 +114,10 @@ public class VisualizerGenMinim extends ToolBase {
 					}
 					data = data / 50;
 
-//					if (data < 75 && !no_thresh)
-//						data = 75;
-//					if (data > 150 && !no_thresh)
-//						data = 150;
+					// if (data < 75 && !no_thresh)
+					// data = 75;
+					// if (data > 150 && !no_thresh)
+					// data = 150;
 
 					int val = Math.round(data);
 					valuesArray.put(val);
