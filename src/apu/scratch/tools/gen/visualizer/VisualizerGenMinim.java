@@ -42,7 +42,7 @@ public class VisualizerGenMinim extends ToolBase {
 		System.out.println("Initializing...");
 		File input = new File(args[0]);
 		File output = new File(args[1]);
-		int fps = Integer.parseInt(args[2]);
+		float fps = Float.parseFloat(args[2]);
 		boolean bass_only = !args[3].equals("true");
 
 		ZipOutputStream outFile = new ZipOutputStream(new FileOutputStream(
