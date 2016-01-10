@@ -3,6 +3,7 @@
  */
 package apu.scratch.tools.gui;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -193,9 +194,14 @@ public class ToolPanel extends JPanel {
 
 		public NumberToolOption(ParamDef param) {
 			super(param);
-			spinner = new JSpinner(new SpinnerNumberModel(0, Double.MIN_VALUE,
+			spinner = new JSpinner(new SpinnerNumberModel(0, -Double.MIN_VALUE,
 					Double.MAX_VALUE, 1));
 			add(spinner);
+			Dimension size = new Dimension(50, 20);
+			setSize(size);
+			setPreferredSize(size);
+			spinner.setSize(size);
+			spinner.setPreferredSize(size);
 		}
 
 		@Override

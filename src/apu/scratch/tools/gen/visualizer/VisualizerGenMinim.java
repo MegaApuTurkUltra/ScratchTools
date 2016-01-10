@@ -42,7 +42,7 @@ public class VisualizerGenMinim extends ToolBase {
 		System.out.println("Initializing...");
 		File input = new File(args[0]);
 		File output = new File(args[1]);
-		int fps = args[2].equals("true") ? 20 : 10;
+		int fps = Integer.parseInt(args[2]);
 		boolean bass_only = !args[3].equals("true");
 
 		ZipOutputStream outFile = new ZipOutputStream(new FileOutputStream(
@@ -178,9 +178,9 @@ public class VisualizerGenMinim extends ToolBase {
 				new ParamDef("output", "The sb2 file to write to", false,
 						ParamType.FILE_OUT),
 				new ParamDef(
-						"highFps",
-						"True to generate animation frames at 20 FPS (warning: file will be massive), false to generate it at 10 (recommended)",
-						false, ParamType.BOOLEAN),
+						"fps",
+						"A number indicating the number of frames per second of data to output. Usually 30",
+						false, ParamType.NUMBER),
 				new ParamDef(
 						"fullSpectrum",
 						"True to analyze a large spectrum of frequencies, false for bass only",
